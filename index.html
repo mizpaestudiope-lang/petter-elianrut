@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Petter & Elianrut</title>
+    
+    <!-- FAVICON DE ANILLOS -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='35' cy='50' r='25' fill='none' stroke='%23D4AF37' stroke-width='6'/><circle cx='65' cy='50' r='25' fill='none' stroke='%23D4AF37' stroke-width='6'/></svg>">
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #556B2F;
+            --secondary-color: #8FBC8F;
+            --accent-color: #D4AF37;
+            --bg-color: #fdfbf7;
+            --text-color: #333;
+            --light-text: #666;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0eadd' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 0;
+            border-top: 5px solid var(--accent-color);
+        }
+
+        /* DETALLES FLORALES LATERALES */
+        .side-flowers {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 60px;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .side-left { left: 0; }
+        .side-right { right: 0; transform: scaleX(-1); }
+        .side-flowers svg { width: 100%; height: auto; fill: none; }
+        .content-wrapper { padding: 0 25px; position: relative; z-index: 2; }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 80px 20px 40px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, #fff 0%, #f9f9f5 100%);
+        }
+
+        .flower-decor { position: absolute; top: 0; width: 180px; height: 180px; z-index: 1; pointer-events: none; }
+        .flower-left { left: 0; }
+        .flower-right { right: 0; transform: scaleX(-1); }
+
+        /* CONTENEDOR ANILLOS Y FLORES CENTRALES */
+        .rings-container {
+            position: relative;
+            width: 200px; /* Más grande */
+            height: 150px;
+            margin: 0 auto 10px; /* Menos margen inferior para acercar a nombres */
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Flores detrás de los anillos */
+        .central-flowers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.8;
+        }
+        
+        /* Anillos enfrente */
+        .rings-svg {
+            position: relative;
+            z-index: 2;
+            width: 120px; /* Tamaño de los anillos realistas */
+            height: auto;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.15));
+        }
+
+        /* NOMBRES (Más juntos y bold) */
+        .names-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.5rem; /* Un poco más grande */
+            color: var(--primary-color);
+            line-height: 0.9; /* Más juntos */
+            font-weight: bold; /* Negrita solicitada */
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.05);
+        }
+
+        .ampersand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin: 0; /* Sin margen vertical extra */
+            line-height: 1;
+        }
+
+        .verse {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--light-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 260px;
+            margin: 20px auto 0;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            background-color: rgba(255,255,255,0.5);
+        }
+
+        /* DATE SECTION */
+        .date-section { padding: 30px 20px; text-align: center; }
+        .date-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary-color); font-weight: 700; letter-spacing: 2px; }
+        .date-sub { font-size: 0.9rem; color: var(--light-text); margin-top: 5px; }
+
+        .divider { display: flex; align-items: center; justify-content: center; margin: 20px auto; width: 80%; }
+        .divider-line { border-bottom: 1px solid #ddd; width: 100%; }
+        .divider-icon { width: 30px; height: 30px; margin: 0 10px; fill: var(--accent-color); opacity: 0.7; }
+
+        /* LOCATION */
+        .location-section { padding: 20px; text-align: center; background: #fafafa; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+        .icon-loc { width: 40px; height: 40px; fill: var(--primary-color); margin-bottom: 10px; }
+        .loc-title { font-weight: 600; color: var(--text-color); }
+        .loc-address { font-size: 0.9rem; color: var(--light-text); margin-top: 5px; margin-bottom: 15px; line-height: 1.5; }
+        
+        .btn-map {
+            display: inline-flex; align-items: center; gap: 8px;
+            background-color: white; color: var(--primary-color);
+            border: 1px solid var(--primary-color); padding: 8px 20px;
+            border-radius: 20px; text-decoration: none; font-size: 0.85rem;
+            font-weight: 600; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .btn-map:hover { background-color: var(--primary-color); color: white; transform: translateY(-2px); }
+        .btn-map svg { width: 16px; height: 16px; fill: currentColor; }
+
+        /* DRESS CODE */
+        .dress-code {
+            padding: 40px 20px;
+            background: #fff;
+            position: relative;
+            text-align: center;
+        }
+
+        .dc-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dc-title span {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--light-text);
+            margin-top: 5px;
+            text-transform: none;
+        }
+
+        .dc-icons-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .dc-item { text-align: center; transition: transform 0.3s; }
+        .dc-item:hover { transform: translateY(-5px); }
+        
+        .dc-icon-wrapper {
+            width: 80px; height: 80px; margin: 0 auto 10px; border-radius: 50%;
+            background: #f4f4f0; display: flex; align-items: center; justify-content: center;
+            border: 1px solid #eee;
+        }
+        
+        .dc-icon { width: 45px; height: 45px; fill: var(--primary-color); color: var(--primary-color); }
+        
+        .dc-label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-color); margin-top: 5px; }
+
+        /* GIFT SECTION */
+        .gift-section { padding: 40px 20px; text-align: center; border-top: 1px dashed #ddd; margin: 20px 0; position: relative; }
+        .gift-flower { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; fill: var(--secondary-color); background: #fff; padding: 0 10px; }
+        
+        .gift-icon { width: 70px; height: 70px; fill: var(--primary-color); margin-bottom: 15px; }
+        .gift-text { font-family: 'Playfair Display', serif; font-size: 0.95rem; line-height: 1.6; color: var(--light-text); max-width: 300px; margin: 0 auto; }
+
+        /* RESERVATION & ADULTS */
+        .reservation-section { padding: 30px 20px; text-align: center; }
+        .res-icon { width: 40px; height: 40px; fill: var(--primary-color); margin-bottom: 15px; }
+        .res-visual { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+        .seat-circle {
+            width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--primary-color);
+            display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+            font-weight: 600; color: var(--primary-color); background: transparent;
+        }
+        .seat-circle.taken { background-color: var(--primary-color); color: white; }
+        .res-main-text { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 5px; color: var(--text-color); }
+        .res-sub-text { font-size: 0.9rem; color: var(--light-text); margin-bottom: 30px; }
+        
+        .adults-msg {
+            margin-top: 20px; font-family: 'Playfair Display', serif; font-style: italic;
+            font-size: 0.95rem; color: var(--light-text); background: #f4f4f0;
+            padding: 15px; border-radius: 8px; border-left: 3px solid var(--primary-color);
+        }
+
+        /* RSVP BUTTON */
+        .rsvp-section { padding: 30px 20px 50px; text-align: center; }
+        .env-icon { width: 50px; height: 50px; fill: var(--primary-color); margin-bottom: 15px; }
+        .btn-confirm {
+            display: inline-block; background-color: var(--primary-color); color: white;
+            padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem;
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(85, 107, 47, 0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-confirm:hover { background-color: #3d4f21; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(85, 107, 47, 0.4); }
+
+        /* COUNTDOWN */
+        .countdown-section {
+            padding: 40px 20px 50px 40px; 
+            background-color: #fff;
+            display: flex;
+            justify-content: flex-start; 
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid #eee;
+        }
+        
+        .cd-timer { display: flex; justify-content: center; gap: 15px; width: 100%; position: relative; z-index: 2; }
+        .cd-box {
+            display: flex; flex-direction: column; align-items: center; background: #fff;
+            padding: 10px; border-radius: 10px; border: 1px solid #eee; min-width: 60px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .cd-value { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--primary-color); line-height: 1; }
+        .cd-label { font-size: 0.6rem; text-transform: uppercase; margin-top: 8px; letter-spacing: 1px; color: var(--light-text); font-weight: 600; }
+
+        .floral-bottom-right { position: absolute; bottom: -20px; right: -20px; width: 150px; z-index: 1; opacity: 0.8; pointer-events: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- FLORES LATERALES IZQUIERDA -->
+    <div class="side-flowers side-left">
+        <svg viewBox="0 0 50 800" width="50" height="100%">
+            <path d="M40,0 Q10,50 40,100 T40,200 T40,300 T40,400 T40,500 T40,600 T40,700 T40,800" fill="none" stroke="#8FBC8F" stroke-width="1.5" opacity="0.6"/>
+            <g transform="translate(25, 50)"><circle cx="0" cy="0" r="5" fill="#D4AF37" opacity="0.7"/><path d="M0,0 Q10,10 5,20 Q0,10 -5,20 Q-10,10 0,0" fill="#fff" stroke="#556B2F" stroke-width="0.5"/></g>
+            <path d="M40,150 Q20,160 30,180 Q40,160 40,150" fill="#556B2F" opacity="0.5"/>
+            <g transform="translate(25, 250) scale(0.8)"><circle cx="0" cy="0" r="5" fill="#D4AF37"/><path d="M0,-10 Q5,-5 0,0 Q-5,-5 0,-10" fill="#fff"/></g>
+            <path d="M40,350 Q60,370 50,390 Q40,370 40,350" fill="#8FBC8F" opacity="0.6"/>
+            <g transform="translate(25, 450)"><circle cx="0" cy="0" r="4" fill="#D4AF37" opacity="0.8"/></g>
+            <path d="M40,550 Q20,560 30,580 Q40,560 40,550" fill="#556B2F" opacity="0.5"/>
+            <g transform="translate(25, 650) scale(0.9)"><circle cx="0" cy="0" r="6" fill="#D4AF37"/><path d="M0,-12 Q6,-6 0,0 Q-6,-6 0,-12" fill="#fff" stroke="#8FBC8F" stroke-width="0.3"/></g>
+            <path d="M40,750 Q60,770 50,790 Q40,770 40,750" fill="#8FBC8F" opacity="0.6"/>
+        </svg>
+    </div>
+
+    <!-- FLORES LATERALES DERECHA -->
+    <div class="side-flowers side-right">
+        <svg viewBox="0 0 50 800" width="50" height="100%">
+            <path d="M40,0 Q10,50 40,100 T40,200 T40,300 T40,400 T40,500 T40,600 T40,700 T40,800" fill="none" stroke="#8FBC8F" stroke-width="1.5" opacity="0.6"/>
+            <g transform="translate(25, 50)"><circle cx="0" cy="0" r="5" fill="#D4AF37" opacity="0.7"/><path d="M0,0 Q10,10 5,20 Q0,10 -5,20 Q-10,10 0,0" fill="#fff" stroke="#556B2F" stroke-width="0.5"/></g>
+            <path d="M40,150 Q20,160 30,180 Q40,160 40,150" fill="#556B2F" opacity="0.5"/>
+            <g transform="translate(25, 250) scale(0.8)"><circle cx="0" cy="0" r="5" fill="#D4AF37"/><path d="M0,-10 Q5,-5 0,0 Q-5,-5 0,-10" fill="#fff"/></g>
+            <path d="M40,350 Q60,370 50,390 Q40,370 40,350" fill="#8FBC8F" opacity="0.6"/>
+            <g transform="translate(25, 450)"><circle cx="0" cy="0" r="4" fill="#D4AF37" opacity="0.8"/></g>
+            <path d="M40,550 Q20,560 30,580 Q40,560 40,550" fill="#556B2F" opacity="0.5"/>
+            <g transform="translate(25, 650) scale(0.9)"><circle cx="0" cy="0" r="6" fill="#D4AF37"/><path d="M0,-12 Q6,-6 0,0 Q-6,-6 0,-12" fill="#fff" stroke="#8FBC8F" stroke-width="0.3"/></g>
+            <path d="M40,750 Q60,770 50,790 Q40,770 40,750" fill="#8FBC8F" opacity="0.6"/>
+        </svg>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="content-wrapper">
+        
+        <!-- Hero Section -->
+        <div class="hero">
+            <svg class="flower-decor flower-left" viewBox="0 0 200 200">
+                <g transform="translate(40, 40)">
+                    <circle cx="0" cy="0" r="15" fill="#D4AF37" opacity="0.8"/>
+                    <ellipse cx="-12" cy="0" rx="10" ry="15" fill="#fff" stroke="#8FBC8F" stroke-width="0.5" transform="rotate(-30)"/>
+                    <ellipse cx="12" cy="0" rx="10" ry="15" fill="#fff" stroke="#8FBC8F" stroke-width="0.5" transform="rotate(30)"/>
+                    <ellipse cx="0" cy="-12" rx="10" ry="15" fill="#fff" stroke="#8FBC8F" stroke-width="0.5"/>
+                </g>
+                <path d="M30,50 Q50,30 40,60 Z" fill="#556B2F" opacity="0.6"/>
+            </svg>
+
+            <svg class="flower-decor flower-right" viewBox="0 0 200 200">
+                <g transform="translate(40, 40)">
+                    <circle cx="0" cy="0" r="15" fill="#D4AF37" opacity="0.8"/>
+                    <ellipse cx="-12" cy="0" rx="10" ry="15" fill="#fff" stroke="#8FBC8F" stroke-width="0.5" transform="rotate(-30)"/>
+                    <ellipse cx="12" cy="0" rx="10" ry="15" fill="#fff" stroke="#8FBC8F" stroke-width="0.5" transform="rotate(30)"/>
+                    <ellipse cx="0" cy="-12" rx="10" ry="15" fill="#fff" stroke="#8FBC8F" stroke-width="0.5"/>
+                </g>
+                <path d="M30,50 Q50,30 40,60 Z" fill="#556B2F" opacity="0.6"/>
+            </svg>
+
+            <!-- CONTENEDOR CON FLORES Y ANILLOS -->
+            <div class="rings-container">
+                <!-- Flores alrededor -->
+                <svg class="central-flowers" viewBox="0 0 200 150">
+                     <!-- Ramas y flores decorativas alrededor del centro -->
+                    <path d="M20,100 Q50,50 100,75 T180,50" fill="none" stroke="#8FBC8F" stroke-width="1.5" opacity="0.7"/>
+                    <path d="M30,90 Q60,40 110,70 T170,30" fill="none" stroke="#556B2F" stroke-width="1.5" opacity="0.6"/>
+                    
+                    <!-- Flor Izquierda Abajo -->
+                    <g transform="translate(30, 100)">
+                        <circle cx="0" cy="0" r="8" fill="#D4AF37" opacity="0.6"/>
+                        <path d="M0,0 Q10,-5 8,10 Q0,5 -8,10 Q-10,-5 0,0" fill="#fff" stroke="#8FBC8F" stroke-width="0.3"/>
+                    </g>
+                    
+                    <!-- Flor Derecha Arriba -->
+                    <g transform="translate(160, 50)">
+                        <circle cx="0" cy="0" r="6" fill="#D4AF37" opacity="0.7"/>
+                        <path d="M0,0 Q8,8 0,15 Q-8,8 0,0" fill="#fff" stroke="#8FBC8F" stroke-width="0.3"/>
+                    </g>
+                    
+                     <!-- Flor Izquierda Arriba -->
+                    <g transform="translate(50, 40)">
+                        <circle cx="0" cy="0" r="5" fill="#D4AF37" opacity="0.5"/>
+                        <path d="M0,0 Q5,-5 10,0 Q5,5 0,0" fill="#fff" stroke="#8FBC8F" stroke-width="0.3"/>
+                    </g>
+                </svg>
+
+                <!-- ANILLOS REALISTAS (Centrados y grandes) -->
+                <svg class="rings-svg" viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FDD982;stop-opacity:1" />
+                            <stop offset="25%" style="stop-color:#D4AF37;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#FDD982;stop-opacity:1" />
+                            <stop offset="75%" style="stop-color:#AA8C2C;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    
+                    <!-- Anillo Izquierdo -->
+                    <path d="M20,35 m-15,0 a15,15 0 0,1 30,0" fill="none" stroke="url(#goldGradient)" stroke-width="4" stroke-linecap="round"/>
+                    <!-- Anillo Derecho -->
+                    <path d="M55,35 m-15,0 a15,15 0 0,1 30,0" fill="none" stroke="url(#goldGradient)" stroke-width="4" stroke-linecap="round"/>
+                    
+                    <!-- Cruce de anillos -->
+                    <path d="M20,35 m15,0 a15,15 0 0,1 -30,0" fill="none" stroke="url(#goldGradient)" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M55,35 m-15,0 a15,15 0 0,0 30,0" fill="none" stroke="url(#goldGradient)" stroke-width="4" stroke-linecap="round"/>
+
+                    <!-- Brillos -->
+                    <path d="M18,25 Q15,35 20,45" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1" stroke-linecap="round"/>
+                    <path d="M53,25 Q50,35 55,45" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- NOMBRES (Juntos y Bold) -->
+            <div class="names-container">
+                <span class="name">Petter</span>
+                <span class="ampersand">&</span>
+                <span class="name">Elianrut</span>
+            </div>
+            
+            <div class="verse">
+                "Uno solo puede ser vencido, pero dos pueden resistir. ¡La cuerda de tres hilos no se rompe fácilmente!" <br><strong>Eclesiastés 4:12</strong>
+            </div>
+        </div>
+
+        <!-- Date Section -->
+        <div class="date-section">
+            <div class="date-text">22 . 03 . 2026</div>
+            <div class="date-sub">Sábado, 8:00 PM</div>
+            
+            <div class="divider">
+                <div class="divider-line"></div>
+                <svg class="divider-icon" viewBox="0 0 24 24">
+                    <path d="M12,22 C12,22 4,14 4,9 C4,5.5 7.5,2 12,2 C16.5,2 20,5.5 20,9 C20,14 12,22 12,22 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <div class="divider-line"></div>
+            </div>
+        </div>
+
+        <!-- Location Section -->
+        <div class="location-section">
+            <svg class="icon-loc" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <div class="loc-title">Ceremonia y Recepción</div>
+            <div class="loc-address">Iglesia Bautista Jesucristo es el Camino<br>Calle González entre Buchivacoa y Churuguara</div>
+            
+            <a href="https://www.google.com/maps/search/?api=1&query=Iglesia+Bautista+Jesucristo+es+el+Camino+Calle+Gonzalez+Buchivacoa+Churuguara" target="_blank" class="btn-map">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Ver Ubicación
+            </a>
+        </div>
+
+        <!-- Dress Code -->
+        <div class="dress-code">
+            <div class="dc-title">
+                Código de Vestimenta
+                <span>Semi Formal</span>
+            </div>
+
+            <div class="dc-icons-container">
+                <div class="dc-item">
+                    <div class="dc-icon-wrapper">
+                        <svg class="dc-icon" version="1.1" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor" d="M36.585,38.164v-1.012l-7.57-15.144l2.087-8.313l0.005-0.003c-1.265-0.545-2.16-1.78-2.16-3.246V8.008h-2.51c0,1.398-1.133,2.531-2.532,2.531c-1.398,0-2.531-1.133-2.531-2.531h-2.51v2.437c0,1.373-0.786,2.547-1.925,3.138l0.002,0.002l2.211,8.422l-7.714,15.144v2.828h0.008l-0.008,0.027h13.596h1.031h8.158h0.67h1.697l-0.006-0.027V38.164z"/>
+                        </svg>
+                    </div>
+                    <div class="dc-label">Dama</div>
+                </div>
+                <div class="dc-item">
+                    <div class="dc-icon-wrapper">
+                        <svg class="dc-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920">
+                            <path fill="#fff" d="M1183.5 285.6S1438.4 322 1518.8 471l184.3 1232.1-249 11.3-113.7-837.7v700.4H994.1l77.6-605 183.1-479.7L1111 216.9l72.5 68.7zM579.7 1576.9h414.5l77.6-605-482.5-394.6L809 216.9l-72.5 68.6s-254.9 36.4-335.3 185.4L216.9 1703.1l249 11.3 113.7-837.7v700.2z"/>
+                            <path fill="#fff" d="M1111 216.9l-32.4 147.6H860.4L809 216.9h302zm-32.4 147.6l-84.4 384.4 77.6 223.1 183.1-479.7L1111 216.9l-32.4 147.6zm-84.5 384.4l77.6 223.1-482.4-394.7L809 216.9l51.4 147.6 133.7 384.4z"/>
+                            <path fill="#fff" d="M1078.6 364.5l-84.5 384.4-133.7-384.4z"/>
+                            <g fill="none" stroke="currentColor" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                                <g>
+                                    <path d="M809 216.9l-72.5 68.6s-254.9 36.4-335.3 185.4L216.9 1703.1l249 11.3 113.7-837.7V1577h414.5l77.6-605"/>
+                                    <path d="M1111 216.9l72.5 68.6s254.9 36.4 335.3 185.4L1703.1 1703l-249 11.3-113.7-837.7V1577H994.1"/>
+                                    <path d="M994.1 748.9L860.4 364.5 809 216.9 589.3 577.3 1071.8 972"/>
+                                    <path d="M809 216.9h302"/>
+                                    <path d="M860.4 364.5h218.2"/>
+                                    <path d="M1111 216.9l143.8 275.4-183 479.7-77.7-223.1 84.5-384.4z"/>
+                                    <path d="M579.7 1171.3L728.4 1297"/>
+                                    <path d="M1353.2 1171.3l-12.9 10.9-135.9 114.8"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="dc-label">Caballero</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gift Section -->
+        <div class="gift-section">
+            <svg class="gift-flower" viewBox="0 0 24 24">
+                 <path d="M12,22 C12,22 4,14 4,9 C4,5.5 7.5,2 12,2 C16.5,2 20,5.5 20,9 C20,14 12,22 12,22 Z" fill="currentColor"/>
+            </svg>
+            
+            <svg class="gift-icon" viewBox="0 0 24 24">
+                <path d="M4,10H20V20C20,21.1 19.1,22 18,22H6C4.9,22 4,21.1 4,20V10Z" fill="currentColor"/>
+                <path d="M4,10H20V8C20,6.9 19.1,6 18,6H6C4.9,6 4,6.9 4,8V10Z" fill="currentColor" opacity="0.8"/>
+                <rect x="6" y="12" width="12" height="1.5" rx="0.5" fill="white" opacity="0.9"/>
+                <g transform="translate(9, 3) rotate(-15)">
+                    <rect x="0" y="0" width="6" height="4" rx="0.5" fill="#D4AF37" stroke="currentColor" stroke-width="0.2"/>
+                    <text x="3" y="3" font-size="2.5" text-anchor="middle" fill="#556B2F" font-weight="bold">$</text>
+                </g>
+            </svg>
+            
+            <p class="gift-text">
+                Gracias por tu aprecio, tu apoyo y tu presencia. Contaremos con un buzón en la boda en el que podrás depositar un sobre con tu regalo en efectivo.
+            </p>
+        </div>
+
+        <!-- Reservation & Adults -->
+        <div class="reservation-section">
+            <svg class="res-icon" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+
+            <div class="res-main-text">Hemos reservado</div>
+            <div class="res-sub-text">Un lugar para ti.</div>
+            
+            <div class="res-visual">
+                <div class="seat-circle">1</div>
+                <div class="seat-circle taken">2</div>
+                <div class="seat-circle">3</div>
+            </div>
+
+            <div class="adults-msg">
+                Con todo cariño, esta celebración está reservada para adultos. Apreciamos su comprensión.
+            </div>
+        </div>
+
+        <!-- RSVP -->
+        <div class="rsvp-section">
+            <svg class="env-icon" viewBox="0 0 24 24">
+                <path d="M20,4H4C2.9,4 2,4.9 2,6V18C2,19.1 2.9,20 4,20H20C21.1,20 22,19.1 22,18V6C22,4.9 21.1,4 20,4M20,8L12,13L4,8V6L12,11L20,6V8Z"/>
+            </svg>
+            <br>
+            <a href="https://wa.me/584121562643?text=Hola,%20confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Petter%20y%20Elianrut" target="_blank" class="btn-confirm">
+                Confirma tu asistencia
+            </a>
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown-section">
+            <div class="cd-timer" id="countdown">
+                <div class="cd-box">
+                    <span class="cd-value" id="days">00</span>
+                    <span class="cd-label">Días</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-value" id="hours">00</span>
+                    <span class="cd-label">Horas</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-value" id="minutes">00</span>
+                    <span class="cd-label">Minutos</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-value" id="seconds">00</span>
+                    <span class="cd-label">Segundos</span>
+                </div>
+            </div>
+            
+            <svg class="floral-bottom-right" viewBox="0 0 200 300">
+                <path d="M100,300 Q150,250 120,150 T180,50" fill="none" stroke="#8FBC8F" stroke-width="2"/>
+                <path d="M80,300 Q130,220 90,100 T150,20" fill="none" stroke="#8FBC8F" stroke-width="2"/>
+                <circle cx="180" cy="50" r="15" fill="#D4AF37" opacity="0.5"/>
+                <circle cx="150" cy="20" r="10" fill="#D4AF37" opacity="0.5"/>
+                <path d="M160,70 Q190,90 160,110 Q130,90 160,70" fill="#8FBC8F" opacity="0.6"/>
+                <path d="M130,30 Q160,50 130,70 Q100,50 130,30" fill="#556B2F" opacity="0.6"/>
+                <path d="M110,150 Q140,170 110,190 Q80,170 110,150" fill="#8FBC8F" opacity="0.5"/>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Fecha límite: 22 de Marzo de 2026 a las 8:00 PM
+    const weddingDate = new Date("March 22, 2026 20:00:00").getTime();
+
+    const countdownFunction = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+            clearInterval(countdownFunction);
+            document.getElementById("days").innerText = "00";
+            document.getElementById("hours").innerText = "00";
+            document.getElementById("minutes").innerText = "00";
+            document.getElementById("seconds").innerText = "00";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+    }, 1000);
+</script>
+
+</body>
+</html>
